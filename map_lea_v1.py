@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import dash_leaflet as dl
-
 from dash import Dash
 
 app = Dash()

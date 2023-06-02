@@ -5,9 +5,8 @@ import random
 
 import dash_leaflet as dl
 import dash_leaflet.express as dlx
-from dash_extensions.javascript import Namespace
-
 from dash import Dash, html
+from dash_extensions.javascript import Namespace
 
 # Create some markers.
 points = [

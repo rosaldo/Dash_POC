@@ -3,7 +3,6 @@
 
 import dash_leaflet as dl
 import dash_leaflet.express as dlx
-
 from dash import Dash
 
 app = Dash()

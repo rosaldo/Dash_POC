@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import plotly.express as px
-
 from dash import Dash, dcc
 
 app = Dash(__name__)
