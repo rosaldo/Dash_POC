@@ -13,7 +13,7 @@ app.layout = dbc.Container(
     children=[
         dbc.Row(
             children=[
-                dcc.Store(id="db", storage_type="local"),
+                dcc.Store(id="webapp_client_db_v2", storage_type="local"),
                 html.H1(
                     style={"text-align":"center"},
                     children="Web App com Armazenamento Local"
@@ -66,7 +66,7 @@ app.layout = dbc.Container(
 
 @app.callback(
     [
-        Output("db", "data"),
+        Output("webapp_client_db_v2", "data"),
         Output("dados_salvos", "data"),
         Output("input_dados", "value"),
         Output("mensagem", "children"),
@@ -75,7 +75,7 @@ app.layout = dbc.Container(
         Input("botao_salvar", "n_clicks"),
     ],
     [
-        State("db", "data"),
+        State("webapp_client_db_v2", "data"),
         State("input_dados", "value"),
         State("dados_salvos", "data"),
     ],
@@ -85,7 +85,8 @@ def salvar_dados(bt_click, db, value, data):
     if not db:
         db = list()
     new = dict(uuid=uuid.uuid4().hex, value=value)
-    db.append(new)
+    if value:
+        db.append(new)
     if data:
         new_data = db
     else:
@@ -101,7 +102,7 @@ def salvar_dados(bt_click, db, value, data):
         Input("botao_mostrar", "n_clicks"),
     ],
     [
-        State("db", "data"),
+        State("webapp_client_db_v2", "data"),
     ],
     prevent_initial_call=True
 )
@@ -113,7 +114,7 @@ def mostrar_dados(bt_click, data):
 
 @app.callback(
     [
-        Output("db", "data", allow_duplicate=True),
+        Output("webapp_client_db_v2", "data", allow_duplicate=True),
         Output("dados_salvos", "data", allow_duplicate=True),
     ],
     [
